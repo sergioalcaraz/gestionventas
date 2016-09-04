@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClientesCreateDlg" widgetVar="ClientesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateClientesTitle}">
+            <h:form id="ClientesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clientesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateClientesLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{clientesController.selected.nombre}" title="#{bundle.CreateClientesTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreateClientesLabel_apellido}" for="apellido" />
+                        <p:inputText id="apellido" value="#{clientesController.selected.apellido}" title="#{bundle.CreateClientesTitle_apellido}" />
+                        <p:outputLabel value="#{bundle.CreateClientesLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{clientesController.selected.cedula}" title="#{bundle.CreateClientesTitle_cedula}" />
+                        <p:outputLabel value="#{bundle.CreateClientesLabel_ruc}" for="ruc" />
+                        <p:inputText id="ruc" value="#{clientesController.selected.ruc}" title="#{bundle.CreateClientesTitle_ruc}" />
+                        <p:outputLabel value="#{bundle.CreateClientesLabel_tipo}" for="tipo" />
+                        <p:inputText id="tipo" value="#{clientesController.selected.tipo}" title="#{bundle.CreateClientesTitle_tipo}" required="true" requiredMessage="#{bundle.CreateClientesRequiredMessage_tipo}"/>
+                        <p:outputLabel value="#{bundle.CreateClientesLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{clientesController.selected.telefono}" title="#{bundle.CreateClientesTitle_telefono}" required="true" requiredMessage="#{bundle.CreateClientesRequiredMessage_telefono}"/>
+                        <p:outputLabel value="#{bundle.CreateClientesLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{clientesController.selected.direccion}" title="#{bundle.CreateClientesTitle_direccion}" required="true" requiredMessage="#{bundle.CreateClientesRequiredMessage_direccion}"/>
+                        <p:outputLabel value="#{bundle.CreateClientesLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{clientesController.selected.email}" title="#{bundle.CreateClientesTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateClientesLabel_coorLat}" for="coorLat" />
+                        <p:inputText id="coorLat" value="#{clientesController.selected.coorLat}" title="#{bundle.CreateClientesTitle_coorLat}" />
+                        <p:outputLabel value="#{bundle.CreateClientesLabel_coorLong}" for="coorLong" />
+                        <p:inputText id="coorLong" value="#{clientesController.selected.coorLong}" title="#{bundle.CreateClientesTitle_coorLong}" />
+                        <p:outputLabel value="#{bundle.CreateClientesLabel_idLocalidad}" for="idLocalidad" />
+                        <p:selectOneMenu id="idLocalidad" value="#{clientesController.selected.idLocalidad}" required="true" requiredMessage="#{bundle.EditClientesRequiredMessage_idLocalidad}">
+                            <f:selectItems value="#{localidadesController.itemsAvailableSelectOne}"
+                                           var="idLocalidadItem"
+                                           itemLabel="#{idLocalidadItem.nombre}"
+                                           itemValue="#{idLocalidadItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clientesController.create}" value="#{bundle.Save}" update="display,:ClientesListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClientesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ClientesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

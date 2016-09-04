@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetallesPedidosCreateDlg" widgetVar="DetallesPedidosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDetallesPedidosTitle}">
+            <h:form id="DetallesPedidosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detallesPedidosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDetallesPedidosLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{detallesPedidosController.selected.cantidad}" title="#{bundle.CreateDetallesPedidosTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateDetallesPedidosRequiredMessage_cantidad}"/>
+                        <p:outputLabel value="#{bundle.CreateDetallesPedidosLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{detallesPedidosController.selected.precio}" title="#{bundle.CreateDetallesPedidosTitle_precio}" required="true" requiredMessage="#{bundle.CreateDetallesPedidosRequiredMessage_precio}"/>
+                        <p:outputLabel value="#{bundle.CreateDetallesPedidosLabel_pedidos}" for="pedidos" />
+                        <p:selectOneMenu id="pedidos" value="#{detallesPedidosController.selected.pedidos}" required="true" requiredMessage="#{bundle.EditDetallesPedidosRequiredMessage_pedidos}">
+                            <f:selectItems value="#{pedidosController.itemsAvailableSelectOne}"
+                                           var="pedidosItem"
+                                           itemValue="#{pedidosItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDetallesPedidosLabel_productos}" for="productos" />
+                        <p:selectOneMenu id="productos" value="#{detallesPedidosController.selected.productos}" required="true" requiredMessage="#{bundle.EditDetallesPedidosRequiredMessage_productos}">
+                            <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
+                                           var="productosItem"
+                                           itemValue="#{productosItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detallesPedidosController.create}" value="#{bundle.Save}" update="display,:DetallesPedidosListForm:datalist,:growl" oncomplete="handleSubmit(args,'DetallesPedidosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DetallesPedidosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

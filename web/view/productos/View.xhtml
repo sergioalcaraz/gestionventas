@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProductosViewDlg" widgetVar="ProductosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProductosTitle}">
+            <h:form id="ProductosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{productosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProductosLabel_id}"/>
+                        <h:outputText value="#{productosController.selected.id}" title="#{bundle.ViewProductosTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewProductosLabel_nombre}"/>
+                        <h:outputText value="#{productosController.selected.nombre}" title="#{bundle.ViewProductosTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewProductosLabel_descripcion}"/>
+                        <h:outputText value="#{productosController.selected.descripcion}" title="#{bundle.ViewProductosTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewProductosLabel_precio}"/>
+                        <h:outputText value="#{productosController.selected.precio}" title="#{bundle.ViewProductosTitle_precio}"/>
+                        <h:outputText value="#{bundle.ViewProductosLabel_costo}"/>
+                        <h:outputText value="#{productosController.selected.costo}" title="#{bundle.ViewProductosTitle_costo}"/>
+                        <h:outputText value="#{bundle.ViewProductosLabel_stockAcual}"/>
+                        <h:outputText value="#{productosController.selected.stockAcual}" title="#{bundle.ViewProductosTitle_stockAcual}"/>
+                        <h:outputText value="#{bundle.ViewProductosLabel_stockMinimo}"/>
+                        <h:outputText value="#{productosController.selected.stockMinimo}" title="#{bundle.ViewProductosTitle_stockMinimo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProductosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

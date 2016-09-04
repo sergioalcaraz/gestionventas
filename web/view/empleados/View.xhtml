@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpleadosViewDlg" widgetVar="EmpleadosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEmpleadosTitle}">
+            <h:form id="EmpleadosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empleadosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_id}"/>
+                        <h:outputText value="#{empleadosController.selected.id}" title="#{bundle.ViewEmpleadosTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_nombre}"/>
+                        <h:outputText value="#{empleadosController.selected.nombre}" title="#{bundle.ViewEmpleadosTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_apellido}"/>
+                        <h:outputText value="#{empleadosController.selected.apellido}" title="#{bundle.ViewEmpleadosTitle_apellido}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_telefono}"/>
+                        <h:outputText value="#{empleadosController.selected.telefono}" title="#{bundle.ViewEmpleadosTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_email}"/>
+                        <h:outputText value="#{empleadosController.selected.email}" title="#{bundle.ViewEmpleadosTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_direccion}"/>
+                        <h:outputText value="#{empleadosController.selected.direccion}" title="#{bundle.ViewEmpleadosTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_idLocalidad}"/>
+                        <h:outputText value="#{empleadosController.selected.idLocalidad}" title="#{bundle.ViewEmpleadosTitle_idLocalidad}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadosLabel_usuarios}"/>
+                        <h:outputText value="#{empleadosController.selected.usuarios}" title="#{bundle.ViewEmpleadosTitle_usuarios}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmpleadosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
